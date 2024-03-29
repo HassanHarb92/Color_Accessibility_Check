@@ -32,6 +32,8 @@ def apply_colorblind_simulation(img, cb_type):
         return simulated_img[..., ::-1]
 
 st.title('Color Accessibility Simulation App')
+st.markdown(' ### Beta version')
+st.markdown(' *PSA DEIA Committee – Lab*')
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 if uploaded_file is not None:
@@ -42,12 +44,28 @@ if uploaded_file is not None:
     pil_image_resized = resize_image(pil_image)
     opencv_image_resized = cv2.cvtColor(np.array(pil_image_resized), cv2.COLOR_RGB2BGR)
 
+
+    st.markdown("""
+                <style>
+                .big-font {
+                    font-size:20px !important;
+                    font-weight:bold !important;
+                    text-align: center; /* Centers the text */
+
+                }
+
+
+                </style>
+                """, unsafe_allow_html=True)
+
+
     with st.spinner('Processing...'):
         # First row: Original image centered
         _, col1, _ = st.columns([1,2,1])
         with col1:
-            st.image(opencv_image_resized, channels="BGR", caption="Original")
-
+#            st.markdown('<p class="big-font">Original</p>', unsafe_allow_html=True)
+            st.image(opencv_image_resized, channels="BGR")#, caption="Original")
+            st.markdown('<p class="big-font">Original</p>', unsafe_allow_html=True)
         # Second row: Protanopia and Deuteranopia
         col2, col3 = st.columns(2)
         with col2:
