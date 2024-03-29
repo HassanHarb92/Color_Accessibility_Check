@@ -84,3 +84,6 @@ if uploaded_file is not None:
             simulated_image_monochromacy = apply_colorblind_simulation(opencv_image_resized, 'monochromacy')
             st.image(simulated_image_monochromacy, channels="GRAY", caption="Monochromacy")
 
+
+# Next: compare the original with each of the results, calculate % similarity / overlap
+
