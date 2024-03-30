@@ -31,11 +31,20 @@ def apply_colorblind_simulation(img, cb_type):
         # Convert RGB back to BGR for saving
         return simulated_img[..., ::-1]
 
+#st.set_page_config(layout="wide")
+
 st.title('Color Accessibility Simulation App')
 st.markdown(' ### Beta version')
 st.markdown(' *PSA DEIA Committee – Lab*')
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+left, center, right = st.columns([1, 2, 1])
+
+# Use the middle column for the file uploader to center it
+with center:
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+
+#uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 if uploaded_file is not None:
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
     opencv_image = cv2.imdecode(file_bytes, 1)
